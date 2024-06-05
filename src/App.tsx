@@ -1,11 +1,15 @@
+import Contatos from './containers/Contatos'
 import PerfilFiltro from './containers/PerfilFiltro'
-import EstiloGlobal from './styles'
+import EstiloGlobal, { Container } from './styles/styles'
 
 function App() {
     return (
         <>
             <EstiloGlobal />
-            <PerfilFiltro />
+            <Container>
+                <PerfilFiltro />
+                <Contatos />
+            </Container>
         </>
     )
 }
