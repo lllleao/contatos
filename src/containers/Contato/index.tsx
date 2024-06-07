@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-import * as S from './styles'
+import * as S from '../../styles/cards'
+import { useDispatch } from 'react-redux'
+import { remover, salvar } from '../../store/reducers/contatos'
 
 type Props = {
     nome: string
@@ -13,8 +15,11 @@ const Contato = ({
     nome,
     categoria: categoriaOriginal,
     email: emailOriginal,
-    telefone
+    telefone,
+    id
 }: Props) => {
+    const dispatch = useDispatch()
+
     const [editando, setEditando] = useState(false)
 
     const [email, setEmail] = useState('')
@@ -22,9 +27,9 @@ const Contato = ({
     const [contato, setContato] = useState('')
     const [categoria, setCategoria] = useState('')
 
-    const [erroEmail, setErroEmail] = useState(false)
-    const [erroNumero, setErroNumero] = useState(false)
-    const [erroContato, setErroContato] = useState(false)
+    const [erroEmail, setErroEmail] = useState(true)
+    const [erroNumero, setErroNumero] = useState(true)
+    const [erroContato, setErroContato] = useState(true)
 
     useEffect(() => {
         if (telefone.length > 0) {
@@ -43,7 +48,6 @@ const Contato = ({
             setContato(nome)
         }
     }, [nome])
-
     useEffect(() => {
         if (categoriaOriginal.length > 0) {
             setCategoria(categoriaOriginal)
@@ -61,9 +65,9 @@ const Contato = ({
 
         setNumero(valor)
         if (valor.length <= 14) {
-            setErroNumero(true)
-        } else {
             setErroNumero(false)
+        } else {
+            setErroNumero(true)
         }
     }
 
@@ -73,21 +77,48 @@ const Contato = ({
         const contido = re.test(valor)
         setEmail(valor)
 
-        setErroEmail(!contido)
+        setErroEmail(contido)
     }
 
     const contatoValido = (value: string) => {
         setContato(value)
 
-        value.length === 0 ? setErroContato(true) : setErroContato(false)
+        value.length === 0 ? setErroContato(false) : setErroContato(true)
     }
 
-    const salvar = () => {
-        setContato(contato)
-        setEmail(email)
-        setNumero(numero)
-        setCategoria(categoria)
+    const salvarEdicao = () => {
+        if (erroContato && erroEmail && erroNumero) {
+            dispatch(
+                salvar({
+                    nome: contato,
+                    categoria,
+                    telefone: numero,
+                    email,
+                    id
+                })
+            )
+            setEditando(!editando)
+        }
+    }
+
+    const removerContato = () => {
+        dispatch(
+            remover({
+                id: id
+            })
+        )
+    }
+
+    const cancelar = () => {
+        setNumero(telefone)
+        setEmail(emailOriginal)
+        setContato(nome)
+        setCategoria(categoriaOriginal)
+
         setEditando(!editando)
+        setErroContato(true)
+        setErroEmail(true)
+        setErroNumero(true)
     }
 
     return (
@@ -131,7 +162,6 @@ const Contato = ({
                             numero incorreto
                         </S.Incorreto>
                     </div>
-                    {/* <S.Categoria>{categoria}</S.Categoria> */}
                     <S.Opcoes
                         disabled={!editando}
                         value={categoria}
@@ -145,8 +175,10 @@ const Contato = ({
                 </S.Informacoes>
                 {editando ? (
                     <>
-                        <S.BotaoSalvar onClick={salvar}>Salvar</S.BotaoSalvar>
-                        <S.BotaoRemover onClick={() => setEditando(!editando)}>
+                        <S.BotaoSalvar onClick={() => salvarEdicao()}>
+                            Salvar
+                        </S.BotaoSalvar>
+                        <S.BotaoRemover onClick={() => cancelar()}>
                             Cancelar
                         </S.BotaoRemover>
                     </>
@@ -155,7 +187,9 @@ const Contato = ({
                         <S.Botao onClick={() => setEditando(!editando)}>
                             Editar
                         </S.Botao>
-                        <S.BotaoRemover>Remover</S.BotaoRemover>
+                        <S.BotaoRemover onClick={() => removerContato()}>
+                            Remover
+                        </S.BotaoRemover>
                     </>
                 )}
             </S.CardContato>

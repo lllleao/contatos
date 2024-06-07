@@ -25,10 +25,10 @@ const PerfilFiltro = () => (
             </ul>
         </S.Perfil>
         <S.CardsFiltro>
-            <Filtro contador={3} categoria="trabalho" />
-            <Filtro contador={3} categoria="familia" />
-            <Filtro contador={3} categoria="amigos" />
-            <Filtro ativo contador={3} categoria="todos" />
+            <Filtro categoria="trabalho" />
+            <Filtro categoria="familia" />
+            <Filtro categoria="amigos" />
+            <Filtro categoria="todos" />
         </S.CardsFiltro>
     </S.Aside>
 )

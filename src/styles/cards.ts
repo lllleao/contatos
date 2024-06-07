@@ -24,8 +24,6 @@ export const Informacoes = styled.div`
     margin-right: 18px;
 `
 
-export const TituloContato = styled.p``
-
 export const EamilPhone = styled.input`
     color: #fff;
     &:disabled {
@@ -73,7 +71,7 @@ export const BotaoSalvar = styled(Botao)`
 `
 
 export const Incorreto = styled.div<Props>`
-    opacity: ${({ $erro }) => ($erro ? '1' : '0')};
+    opacity: ${({ $erro }) => ($erro ? '0' : '1')};
     position: absolute;
     background-color: #c32323;
     color: #fff;
