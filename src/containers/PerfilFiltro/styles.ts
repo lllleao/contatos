@@ -1,9 +1,16 @@
 import styled from 'styled-components'
+import { Titulo } from '../../styles/styles'
 
 export const Aside = styled.aside`
     padding: 20px;
     height: 100vh;
     background-color: #262038;
+    @media (max-width: 767px) {
+        height: 100%;
+        ${Titulo} {
+            display: none;
+        }
+    }
 `
 
 export const Perfil = styled.div`
@@ -13,7 +20,8 @@ export const Perfil = styled.div`
         align-items: center;
         margin: 32px 0 64px;
         img {
-            width: 150px;
+            max-width: 150px;
+            width: 100%;
             border-radius: 50%;
             margin-bottom: 16px;
         }

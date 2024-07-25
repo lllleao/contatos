@@ -127,6 +127,7 @@ const Contato = ({
                 <S.Informacoes>
                     <div>
                         <S.Nome
+                            $erro={erroContato}
                             value={contato}
                             type="text"
                             onChange={(e) => contatoValido(e.target.value)}
@@ -139,6 +140,7 @@ const Contato = ({
                     </div>
                     <div>
                         <S.EamilPhone
+                            $erro={erroEmail}
                             type="email"
                             value={email}
                             onChange={(e) => emailValido(e.target.value)}
@@ -151,6 +153,7 @@ const Contato = ({
                     </div>
                     <div>
                         <S.EamilPhone
+                            $erro={erroNumero}
                             type="tel"
                             value={numero}
                             onChange={(e) => numeroMask(e.target.value)}

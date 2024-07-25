@@ -7,4 +7,7 @@ export const Main = styled.main`
     p {
         color: #fff;
     }
+    @media (max-width: 767px) {
+        height: 100vh;
+    }
 `

@@ -11,8 +11,13 @@ export const Botao = styled(Link)`
     background-color: #e01ce0;
     position: absolute;
     bottom: 40px;
-    right: 140px;
+    right: 100px;
     color: #fff;
     font-size: 32px;
     cursor: pointer;
+    @media (max-width: 767px) {
+        bottom: 25%;
+        right: 5%;
+        margin-bottom: 12px;
+    }
 `

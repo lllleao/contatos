@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 type Props = {
-    $erro: boolean
+    $erro?: boolean
 }
 
 export const CardContato = styled.div`
@@ -10,6 +10,9 @@ export const CardContato = styled.div`
     height: fit-content;
     margin-top: 32px;
     color: #fff;
+    @media (max-width: 1265px) {
+        display: block;
+    }
 `
 
 export const Informacoes = styled.div`
@@ -22,9 +25,19 @@ export const Informacoes = styled.div`
     padding: 16px;
     border-radius: 8px;
     margin-right: 18px;
+    @media (max-width: 1099px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+    @media (max-width: 1265px) {
+        margin-bottom: 12px;
+    }
 `
 
-export const EamilPhone = styled.input`
+export const EamilPhone = styled.input<Props>`
     color: #fff;
     &:disabled {
         border: none;
@@ -40,6 +53,10 @@ export const EamilPhone = styled.input`
 
     &:focus {
         outline: none;
+    }
+
+    @media (max-width: 1265px) {
+        border: ${({ $erro }) => ($erro ? '2px solid #fff' : '2px solid red')};
     }
 `
 
@@ -71,7 +88,7 @@ export const BotaoSalvar = styled(Botao)`
 `
 
 export const Incorreto = styled.div<Props>`
-    opacity: ${({ $erro }) => ($erro ? '0' : '1')};
+    display: ${({ $erro }) => ($erro ? 'none' : 'block')};
     position: absolute;
     background-color: #c32323;
     color: #fff;
@@ -82,6 +99,9 @@ export const Incorreto = styled.div<Props>`
     width: 100%;
     text-align: center;
     transition: opacity 0.5s;
+    @media (max-width: 1265px) {
+        display: none;
+    }
 `
 
 export const Opcoes = styled.select`

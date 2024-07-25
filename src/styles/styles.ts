@@ -14,6 +14,9 @@ const EstiloGlobal = createGlobalStyle`
 export const Container = styled.div`
     display: grid;
     grid-template-columns: 320px auto;
+    @media (max-width: 829px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 export const Titulo = styled.h2`
