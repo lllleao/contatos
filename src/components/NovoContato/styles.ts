@@ -13,7 +13,6 @@ export const Error = styled.div<Props>`
     border-radius: 8px;
     margin-top: 32px;
     opacity: ${({ $animacaoErro }) => ($animacaoErro ? '1' : '0')};
-    /* animation-name: deCima, erro; */
     ${({ $animacaoErro }) =>
         $animacaoErro
             ? 'animation: erro 1s ease infinite, deCima 1s ease backwards; transition: opacity 1s;'

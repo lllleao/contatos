@@ -78,9 +78,12 @@ const Contato = ({
         setEmail(valor)
 
         setErroEmail(contido)
+        console.log('oiii')
     }
 
     const contatoValido = (value: string) => {
+        console.log('nome')
+
         setContato(value)
 
         value.length === 0 ? setErroContato(false) : setErroContato(true)

@@ -35,6 +35,14 @@ export const Informacoes = styled.div`
     @media (max-width: 1265px) {
         margin-bottom: 12px;
     }
+
+    @media (max-width: 511px) {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
 `
 
 export const EamilPhone = styled.input<Props>`
