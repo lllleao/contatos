@@ -16,7 +16,7 @@ export const Botao = styled(Link)`
     font-size: 32px;
     cursor: pointer;
     @media (max-width: 767px) {
-        bottom: 19%;
+        bottom: 22%;
         right: 5%;
         margin-bottom: 12px;
     }
